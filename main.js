@@ -1,10 +1,62 @@
-/* JS goes here */
-
 //load json
 //load images
-    //perhaps load current image and displayed thumbnails first?
+//perhaps load current image and displayed thumbnails first?
+
+//fetch the data
+//when it loads load it into a variable
 
 //store json in variable
+const showsRequest = './shows.json';
+let showsData;
+
+const mainImageContainer = document.querySelector('.main-image');
+const episodeCount = document.querySelector('.episode-count');
+
+fetch(showsRequest)
+    .then((response) => {
+        const contentType = response.headers.get("content-type");
+        if (contentType && contentType.includes("application/json")) {
+            return response.json();
+        }
+        throw new TypeError("Oops, we haven't got JSON!");
+    })
+    .then((json) => { handleJSONResponse(json) })
+    .catch((error) => { console.log(error) });
+
+function handleJSONResponse(json) {
+    showsData = json;
+    loadMainImage(json);
+    loadThumbnails(json);
+}
+
+function loadMainImage(showData) {
+    let allShowsHTML = '';
+    const allShowsContainer = document.querySelector('.all-shows-container');
+
+    showData.forEach(function(show) {
+        allShowsHTML +=
+            `<div class="show-container" id="showId${show.id}">
+                <img src=".${show.product_image_url}" class="main-image">
+                <p class="episode-count">${show.episodes} Episodes</p>
+                <p class="show-title">${show.title}</p>
+            </div>`
+    });
+
+    allShowsContainer.innerHTML = allShowsHTML;
+}
+
+function loadThumbnails(showData) {
+    let thumbsHTML = '';
+    const thumbsContainer = document.querySelector('.thumbs');
+
+    showData.forEach(function(show) {
+        thumbsHTML += `<img src=".${show.product_image_url}" width=100 class="main-image">`
+    });
+
+    thumbsContainer.innerHTML = thumbsHTML;
+
+}
+
 
 /** Setup **/
 //load current main image first
