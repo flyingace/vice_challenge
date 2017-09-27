@@ -1,0 +1,29 @@
+/* SCSS goes here */
+body {
+  margin: 0;
+  padding: 0; }
+
+.all-shows-container {
+  margin: auto 0; }
+  .all-shows-container .show-container {
+    display: none; }
+    .all-shows-container .show-container.current, .all-shows-container .show-container:nth-of-type(1) {
+      display: block; }
+    .all-shows-container .show-container .main-image {
+      display: block;
+      width: 70%;
+      margin: 30px auto 0; }
+    .all-shows-container .show-container .episode-count, .all-shows-container .show-container .show-title {
+      margin: 10px 0 0;
+      font-family: "Open Sans", Helvetica, Arial, sans-serif;
+      font-size: 12px;
+      text-align: center;
+      text-transform: uppercase;
+      color: #aaaaaa;
+      font-weight: bold; }
+    .all-shows-container .show-container .show-title {
+      margin: 0 0 10px;
+      font-size: 22px;
+      color: #000000; }
+
+/*# sourceMappingURL=application.css.map */
