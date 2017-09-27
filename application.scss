@@ -37,3 +37,36 @@ body {
     }
   }
 }
+
+.show-navigation {
+  position: absolute;
+  left: 6.67%;
+  bottom: 6.67%;
+  right: 6.67%;
+  overflow-x: auto;
+
+  .icon-left-open, .icon-right-open {
+    display: none;
+    width: 5%;
+    min-width: 40%;
+  }
+
+  .thumbs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .show-thumb {
+      width: 20%;
+      height: 20%;
+      display: block;
+      padding-right: 6.67%;
+
+
+
+      &:last-of-type {
+        padding-right: 0;
+      }
+    }
+  }
+}

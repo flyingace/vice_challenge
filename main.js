@@ -27,6 +27,7 @@ function handleJSONResponse(json) {
     showsData = json;
     loadMainImage(json);
     loadThumbnails(json);
+    addEventListeners();
 }
 
 function loadMainImage(showData) {
@@ -45,18 +46,46 @@ function loadMainImage(showData) {
     allShowsContainer.innerHTML = allShowsHTML;
 }
 
+//TODO: Could be broken down into separate functions
 function loadThumbnails(showData) {
     let thumbsHTML = '';
     const thumbsContainer = document.querySelector('.thumbs');
 
+    thumbsContainer.addEventListener('click', function(evt) {
+        onThumbClick(evt);
+    });
+
     showData.forEach(function(show) {
-        thumbsHTML += `<img src=".${show.product_image_url}" width=100 class="main-image">`
+        thumbsHTML += `<img src=".${show.product_image_url}" class="show-thumb" id="showId${show.id}">`
     });
 
     thumbsContainer.innerHTML = thumbsHTML;
-
 }
 
+function addEventListeners() {
+    window.addEventListener('popstate', function(e) {
+        const searchParams = new URLSearchParams(e.target.location.search);
+        const idNum = searchParams.get('id');
+
+        updateUI(idNum);
+    });
+}
+
+
+function onThumbClick(evt) {
+    const idNum = evt.target.id.replace('showId', '');
+    const idParam = `?id=${idNum}`;
+    updateHistory(idParam);
+    updateUI(idNum);
+}
+
+function updateHistory(idParam) {
+    history.pushState('index.html','',idParam);
+}
+
+function updateUI(idNum) {
+    console.log('id: ', idNum);
+}
 
 /** Setup **/
 //load current main image first

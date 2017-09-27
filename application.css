@@ -26,4 +26,26 @@ body {
       font-size: 22px;
       color: #000000; }
 
+.show-navigation {
+  position: absolute;
+  left: 6.67%;
+  bottom: 6.67%;
+  right: 6.67%;
+  overflow-x: auto; }
+  .show-navigation .icon-left-open, .show-navigation .icon-right-open {
+    display: none;
+    width: 5%;
+    min-width: 40%; }
+  .show-navigation .thumbs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; }
+    .show-navigation .thumbs .show-thumb {
+      width: 20%;
+      height: 20%;
+      display: block;
+      padding-right: 6.67%; }
+      .show-navigation .thumbs .show-thumb:last-of-type {
+        padding-right: 0; }
+
 /*# sourceMappingURL=application.css.map */
