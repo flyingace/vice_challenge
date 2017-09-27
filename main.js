@@ -28,7 +28,7 @@ function handleJSONResponse(json) {
     loadShows(json);
     loadThumbnails(json);
     addEventListeners();
-    updateUI();
+    updateUI(extractIdFromParams());
 }
 
 function loadShows(showData) {
@@ -65,13 +65,13 @@ function loadThumbnails(showData) {
 
 function addEventListeners() {
     window.addEventListener('popstate', function(e) {
-        const idNum = extractIdFromParams(e.target.location.search);
+        const idNum = extractIdFromParams();
         updateUI(idNum);
     });
 }
 
-function extractIdFromParams(searchParams) {
-    const params = new URLSearchParams(searchParams);
+function extractIdFromParams() {
+    const params = new URLSearchParams(window.location.search);
 
     return params.get('id');
 }
