@@ -7,7 +7,7 @@ body {
   margin: auto 0; }
   .all-shows-container .show-container {
     display: none; }
-    .all-shows-container .show-container.current, .all-shows-container .show-container:nth-of-type(1) {
+    .all-shows-container .show-container.current {
       display: block; }
     .all-shows-container .show-container .main-image {
       display: block;

@@ -25,12 +25,13 @@ fetch(showsRequest)
 
 function handleJSONResponse(json) {
     showsData = json;
-    loadMainImage(json);
+    loadShows(json);
     loadThumbnails(json);
     addEventListeners();
+    updateUI();
 }
 
-function loadMainImage(showData) {
+function loadShows(showData) {
     let allShowsHTML = '';
     const allShowsContainer = document.querySelector('.all-shows-container');
 
@@ -56,7 +57,7 @@ function loadThumbnails(showData) {
     });
 
     showData.forEach(function(show) {
-        thumbsHTML += `<img src=".${show.product_image_url}" class="show-thumb" id="showId${show.id}">`
+        thumbsHTML += `<img src=".${show.product_image_url}" class="show-thumb" id="thumbId${show.id}">`
     });
 
     thumbsContainer.innerHTML = thumbsHTML;
@@ -64,16 +65,40 @@ function loadThumbnails(showData) {
 
 function addEventListeners() {
     window.addEventListener('popstate', function(e) {
-        const searchParams = new URLSearchParams(e.target.location.search);
-        const idNum = searchParams.get('id');
-
+        const idNum = extractIdFromParams(e.target.location.search);
         updateUI(idNum);
     });
 }
 
+function extractIdFromParams(searchParams) {
+    const params = new URLSearchParams(searchParams);
+
+    return params.get('id');
+}
+
+function deselectAllShows() {
+    const allShows = document.querySelectorAll('.show-container');
+    allShows.forEach(function(show) {
+        show.classList.remove('current');
+    })
+}
+
+function displaySelectedShow(idNum) {
+    const selectedShow = document.querySelector(`#showId${idNum}`);
+    selectedShow.classList.add('current');
+}
+
+function fadeAllThumbs() {
+
+}
+
+function highlightSelectedThumb(idNum) {
+
+}
+
 
 function onThumbClick(evt) {
-    const idNum = evt.target.id.replace('showId', '');
+    const idNum = evt.target.id.replace('thumbId', '');
     const idParam = `?id=${idNum}`;
     updateHistory(idParam);
     updateUI(idNum);
@@ -84,7 +109,11 @@ function updateHistory(idParam) {
 }
 
 function updateUI(idNum) {
-    console.log('id: ', idNum);
+    const id = (idNum) ? idNum : 1;
+    deselectAllShows();
+    displaySelectedShow(id);
+    fadeAllThumbs();
+    highlightSelectedThumb(id);
 }
 
 /** Setup **/

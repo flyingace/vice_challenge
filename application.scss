@@ -10,7 +10,7 @@ body {
   .show-container {
     display: none;
 
-    &.current, &:nth-of-type(1) {
+    &.current {
       display: block;
     }
 
