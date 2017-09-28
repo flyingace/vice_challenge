@@ -42,11 +42,11 @@ function loadShows(showData) {
 
     showData.forEach(function (show) {
         allShowsHTML +=
-            `<div class="show-container" id="showId${show.id}">
-                <img src=".${show.product_image_url}" class="main-image">
+            `<article class="show-container" id="showId${show.id}">
+                <img src=".${show.product_image_url}" class="main-image" alt="Image for ${show.title}">
                 <p class="episode-count">${show.episodes} Episodes</p>
-                <p class="show-title">${show.title}</p>
-            </div>`
+                <h1 class="show-title">${show.title}</h1>
+            </article>`
     });
 
     allShowsContainer.innerHTML = allShowsHTML;
@@ -62,7 +62,7 @@ function loadThumbnails(showData) {
     const thumbsContainer = document.querySelector('.thumbs');
 
     showData.forEach(function (show) {
-        thumbsHTML += `<img src=".${show.product_image_url}" class="show-thumb" id="thumbId${show.id}">`
+        thumbsHTML += `<img src=".${show.product_image_url}" class="show-thumb" id="thumbId${show.id}" alt="Thumnail image for ${show.title}">`
     });
 
     thumbsContainer.innerHTML = thumbsHTML;
@@ -92,7 +92,6 @@ function updateUIConditionally(jsonLength) {
         if (thumbsContainer.length === jsonLength) {
             updateUI(extractIdFromParams());
             clearInterval(domCheck);
-            console.log('butt');
         }
     }, 100);
 
