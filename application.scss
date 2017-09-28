@@ -5,7 +5,9 @@ body {
 }
 
 .all-shows-container {
-  margin: auto 0;
+  width: 60%;
+  max-width: 980px;
+  margin: 30px auto;
 
   .show-container {
     display: none;
@@ -16,8 +18,9 @@ body {
 
     .main-image {
       display: block;
-      width: 70%;
-      margin: 30px auto 0;
+      width: 100%;
+      max-width: 580px;
+      margin: 0 auto;
     }
 
     .episode-count, .show-title {
@@ -39,11 +42,9 @@ body {
 }
 
 .show-navigation {
-  position: absolute;
-  left: 6.67%;
-  bottom: 6.67%;
-  right: 6.67%;
-  overflow-x: auto;
+  width: 70%;
+  max-width: 980px;
+  margin: 0 auto;
 
   .icon-left-open, .icon-right-open {
     display: none;
@@ -54,15 +55,17 @@ body {
   .thumbs {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    overflow-x: auto;
 
     .show-thumb {
       width: 20%;
       height: 20%;
-      display: block;
       padding-right: 6.67%;
+      opacity: .4;
 
-
+      &.current {
+        opacity: 1;
+      }
 
       &:last-of-type {
         padding-right: 0;
